@@ -6,40 +6,62 @@ A desktop productivity suite built with Python and tkinter. Five modules sharing
 
 ---
 
-## Screenshots
+## Launcher
 
-| Launcher | Overtime Tracker | Payslip Tracker | Anime Library |
-|----------|-----------------|-----------------|---------------|
-| ![Launcher](screenshots/launcher.png) | ![Overtime](screenshots/overtime.png) | ![Payslip](screenshots/payslip.png) | ![Anime](screenshots/anime.png) |
+The hub that launches all three apps. Includes a database schema guide and a theme toggle (light / gray).
+
+![Launcher](screenshots/Launcher.jpg)
 
 ---
 
-## What's Inside
+## Overtime Tracker
 
-### Launcher (`launcher.py`)
+Log work hours with automatic split calculation — first hour at x1.2 (overwork), remaining at x1.4 (overtime). Custom calendar date picker, filterable history with paid/unpaid tracking, bulk operations, and CSV export.
 
-The hub that ties everything together. Three app tiles, a database schema guide for exploring the SQLite structure, and a theme toggle between light and gray modes.
+| Dashboard | Log Hours |
+|-----------|-----------|
+| ![Dashboard](screenshots/Overtimes_Dashboard.jpg) | ![Log Hours](screenshots/Overtimes_LogHours.jpg) |
 
-### Overtime Tracker (`overtime_tracker.py`)
+| History | Settings |
+|---------|----------|
+| ![History](screenshots/Overtimes_History.jpg) | ![Settings](screenshots/Overtimes_Settings.jpg) |
 
-Log work hours with automatic split calculation — first hour at x1.2 (overwork), remaining hours at x1.4 (overtime). Includes a custom calendar date picker, filterable history with paid/unpaid tracking, bulk operations, CSV export, and an earnings dashboard with breakdown by type.
+---
 
-### Payslip Tracker (`payslip_tracker.py`)
+## Payslip Tracker
 
-Track monthly salary alongside Easter, Christmas, and Summer bonuses. The dashboard shows a 12-month breakdown table with salary, overtime, and gross columns, plus a separate bonus section. Duplicate detection prevents accidental overwrites.
+Track monthly salary alongside Easter, Christmas, and Summer bonuses. 12-month breakdown table, duplicate detection, and filtered history with CSV export.
 
-### Anime & Manga Tracker (`animanga_tracker.py`)
+| Dashboard | Log Payslip | History |
+|-----------|-------------|---------|
+| ![Dashboard](screenshots/Payslips_Dashboard.jpg) | ![Log Payslip](screenshots/Payslips_LogPayslip.jpg) | ![History](screenshots/Payslips_History.jpg) |
 
-The largest module at 2,600+ lines. Uses a franchise-based approach where one entry holds multiple seasons, movies, and OVAs, each with individual episode progress tracking.
+---
 
-Notable features:
+## Anime & Manga Tracker
+
+The largest module at 2,600+ lines. Franchise-based tracking where one entry holds multiple seasons, movies, and OVAs, each with individual episode progress.
+
+**Anime Stats and Library**
+
+| Stats Dashboard | Library Grid |
+|-----------------|-------------|
+| ![Anime Stats](screenshots/AnimeManga_AnimeStats.jpg) | ![Anime Library](screenshots/AnimeManga_AnimeLibrary.jpg) |
+
+**Manga Stats and Library**
+
+| Stats Dashboard | Library Grid |
+|-----------------|-------------|
+| ![Manga Stats](screenshots/AnimeManga_MangaStats.jpg) | ![Manga Library](screenshots/AnimeManga_MangaLibrary.jpg) |
+
+Key features:
 
 - **MyAnimeList API search** — search directly from the app, auto-fill episode counts, durations, and cover art
 - **Scrollable search popups** — browse up to 25 API results and add seasons or movies with one click
-- **Smart manga progress** — continuation mode calculates progress relative to a starting chapter, not the total
+- **Smart manga progress** — continuation mode calculates progress relative to a starting chapter
 - **Editable titles** — double-click to rename entries, dedicated rename button for seasons
 - **Image caching** — covers loaded once and cached in memory for smooth scrolling
-- **Responsive grid** — columns adjust automatically to window width, configurable gap setting
+- **Responsive grid** — columns adjust automatically to window width, configurable gap
 - **Dashboard** — stats cards, status breakdown, score distribution, yearly table, top rated list
 
 ---
@@ -59,7 +81,7 @@ overtime_entries + overtime_settings
 payslip_entries (unique constraint on year + month + category)
 ```
 
-8 tables, 5 indexes, WAL mode, cascade deletes. The launcher includes a built-in Database Guide showing every table, column, relationship, and sample queries you can run.
+8 tables, 5 indexes, WAL mode, cascade deletes. The launcher includes a built-in Database Guide showing every table, column, relationship, and sample queries.
 
 ---
 
@@ -79,14 +101,11 @@ payslip_entries (unique constraint on year + month + category)
 ## Setup
 
 ```bash
-# Install the only external dependency
 pip install Pillow
-
-# Run the launcher
 python launcher.py
 ```
 
-All five .py files need to be in the same folder. On first launch, the app creates a `worksuite_data/` directory and auto-migrates any legacy JSON data it finds.
+All five .py files need to be in the same folder. On first launch, the app creates a `worksuite_data/` directory and sets up the database automatically.
 
 ---
 
@@ -105,6 +124,7 @@ project/
     cache/                 -- API response cache
 ```
 
+---
 
 ## Author
 
